@@ -1,0 +1,25 @@
+.listContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1170px) {
+  .listContainer {
+    margin: 0 60px;
+  }
+}
+@media all and (max-width: 980px) {
+  .listContainer {
+    margin: 0 32px;
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 480px) {
+  .listContainer {
+    margin: 0 16px;
+    justify-content: space-around;
+  }
+}
+
+/*# sourceMappingURL=list.module.css.map */

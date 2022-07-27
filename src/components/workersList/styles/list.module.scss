@@ -1,0 +1,26 @@
+
+.listContainer {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+
+
+  @media screen and (max-width: 1170px){
+    margin: 0 60px;
+    //width: 90%;
+    //background: red;
+  }
+
+  @media all and (max-width: 980px){
+    margin: 0 32px;
+    justify-content: space-around;
+  }
+
+  @media all and (max-width: 480px){
+    margin: 0 16px;
+    justify-content: space-around;
+  }
+}

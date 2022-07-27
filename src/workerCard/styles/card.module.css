@@ -1,0 +1,59 @@
+.card {
+  width: 370px;
+  height: 254px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 29px;
+  border-radius: 10px;
+}
+@media all and (max-width: 1170px) {
+  .card {
+    width: 282px;
+    height: 254px;
+  }
+}
+@media all and (max-width: 980px) {
+  .card {
+    height: 254px;
+    width: 344px;
+  }
+}
+
+.avatarContainer {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+.avatarContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  width: 85%;
+  margin-bottom: 10px;
+}
+
+.nameContainer, .position, .email, .phone {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+}
+.nameContainer span, .position span, .email span, .phone span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*# sourceMappingURL=card.module.css.map */
