@@ -17,7 +17,9 @@ export function WorkersList({}) {
 
   return (
     <div className={styles.listContainer}>
-      {/*<WorkerCard />*/}
+      {selectedUsers.map((user, idx) => {
+        return <WorkerCard key={idx} data={user} />;
+      })}
       {/*<WorkerCard />*/}
       {/*<WorkerCard />*/}
       {/*<WorkerCard />*/}
