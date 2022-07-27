@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./styles/card.module.scss";
 
 export function WorkerCard() {
-  console.log("styles", styles);
   return (
     <div className={styles.card}>
       <div className={styles.avatarContainer}>
@@ -15,9 +14,9 @@ export function WorkerCard() {
         <div className={styles.position}>
           <span>Frontend developer dddddddddddddddddddddddddddddds</span>
         </div>
-        <divs className={styles.email}>
+        <div className={styles.email}>
           <span>fronend_develop@gmail.com </span>
-        </divs>
+        </div>
         <div className={styles.phone}>
           <span>+38</span>
           <span>(098)</span>
