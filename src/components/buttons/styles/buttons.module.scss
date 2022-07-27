@@ -1,0 +1,29 @@
+
+.btn {
+  width: 100px;
+  Height :34px;
+
+  border: none;
+  background: #F4E041;
+  border-radius: 80px;
+
+  font-family: Nunito, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &:hover {
+    background: #FFE302;
+    cursor: pointer;
+  }
+}
+
+.disabled {
+  background: #B4B4B4;
+  &:hover {
+    background: #B4B4B4;
+    cursor: pointer;
+  }
+}
