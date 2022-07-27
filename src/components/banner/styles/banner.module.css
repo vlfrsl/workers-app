@@ -1,0 +1,71 @@
+.bannerContainer {
+  width: 100%;
+  max-width: 1170px;
+  height: 650px;
+  display: flex;
+  position: relative;
+  background: green;
+}
+.bannerContainer img {
+  width: 100%;
+  height: 100%;
+}
+@media all and (max-width: 768px) {
+  .bannerContainer {
+    height: 500px;
+  }
+}
+.bannerContainer .bannerContentWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.bannerContainer .bannerContentContainer {
+  width: 386px;
+  height: 323px;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bannerContainer .bannerContentContainer .title {
+  font-family: Nunito, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+}
+.bannerContainer .bannerContentContainer .text {
+  font-family: Nunito, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: white;
+  height: 156px;
+}
+@media all and (max-width: 360px) {
+  .bannerContainer .bannerContentContainer .text {
+    height: 182px;
+  }
+}
+.bannerContainer .bannerContentContainer .buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+@media all and (max-width: 360px) {
+  .bannerContainer .bannerContentContainer {
+    width: 328px;
+    height: 389px;
+    margin-top: -30px;
+  }
+}
+
+/*# sourceMappingURL=banner.module.css.map */
