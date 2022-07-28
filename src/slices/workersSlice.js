@@ -10,7 +10,7 @@ const initialState = {
 export const fetchWorkers = createAsyncThunk(
   "workers/fetchWorkers",
   async (data) => {
-    return getUsers();
+    return getUsers(data);
   }
 );
 

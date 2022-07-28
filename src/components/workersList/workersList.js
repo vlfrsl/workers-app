@@ -12,10 +12,18 @@ export function WorkersList({}) {
   const selectedUsers = useSelector((state) => state.workers.workers);
   const selectStatus = useSelector((state) => state.workers.status);
   const selectIsNext = useSelector((state) => state.workers.isNext);
+
+  const [pageNum, setPageNum] = useState(1);
   console.log("USERS", selectedUsers);
 
   useEffect(() => {
-    dispatch(fetchWorkers());
+    dispatch(
+      fetchWorkers({
+        page: pageNum,
+        limit: 6,
+      })
+    );
+    setPageNum(pageNum + 1);
   }, []);
 
   return (
@@ -30,7 +38,7 @@ export function WorkersList({}) {
         ) : (
           <Button
             text="Load more"
-            callback={() => dispatch(fetchWorkers())}
+            callback={() => dispatch(fetchWorkers({ page: pageNum, limit: 6 }))}
             disabled={!selectIsNext}
           />
         )}
