@@ -1,0 +1,41 @@
+
+.uploadContainer {
+  width: 100%;
+  height: 54px;
+  //background: brown;
+  margin-top: 50px;
+  input {
+    width: 100%;
+    height: 100%;
+
+  }
+}
+
+.customUploadArea {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid #D0CFCF;
+  border-radius: 4px;
+
+  .uploadBtn {
+    width: 83px;
+    height: 100%;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .fileName {
+    //width: 100%;
+    display: flex;
+
+    padding: 0 16px;
+
+    align-items: center;
+  }
+}
+

@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./styles/app.module.scss";
 import { Header } from "../components/header/header";
 import { Banner } from "../components/banner/banner";
-import {UsersList} from "../components/usersList/usersList";
-import {ComponentTitle} from "../components/componentTitle/title";
+import { UsersList } from "../components/usersList/usersList";
+import { ComponentTitle } from "../components/componentTitle/title";
+import { Registration } from "../components/registration/registration";
 
 function App() {
   return (
@@ -11,11 +12,20 @@ function App() {
       <Header />
       <div className={styles.contentWrapper}>
         <Banner />
-        <div className={styles.workersListWrapper}>
-            <div className={styles.titleWrapper}>
-                <ComponentTitle text = "Working with GET request"/>
-            </div>
+        <div className={styles.usersListWrapper}>
+          <div className={styles.titleWrapper}>
+            <ComponentTitle text="Working with GET request" />
+          </div>
           <UsersList />
+        </div>
+
+        <div className={styles.usersListWrapper}>
+          <div className={styles.titleWrapper}>
+            <ComponentTitle text="Working with POST request " />
+          </div>
+          <div className={styles.registrationWrapper}>
+            <Registration />
+          </div>
         </div>
       </div>
     </div>
