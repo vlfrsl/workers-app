@@ -3,6 +3,7 @@ import styles from "./styles/positions.module.scss";
 import { fetchPositions } from "../../../slices/registrationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RadioButton } from "./radioButton/radioButton";
+import { Loader } from "../../../loader/loader";
 
 export function Positions() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export function Positions() {
         <span>Select your position</span>
       </div>
 
+      {status === "loading" && <Loader />}
       {selectedPositions.map((position, idx) => {
         return <RadioButton key={idx} position={position} />;
       })}
