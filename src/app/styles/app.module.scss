@@ -23,7 +23,17 @@
   width: 100%;
 
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 
-  margin-top: 40px;
+  margin-top: 140px;
+
+  .titleWrapper{
+    width: 85%;
+    //background: blue;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -28,6 +28,7 @@ export function UsersList() {
 
     return (
         <div className={styles.listContainer}>
+
             {selectedUsers.map((user, idx) => {
                 return <UserCard key={idx} data={user} />;
             })}
