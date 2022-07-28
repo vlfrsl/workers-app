@@ -3,6 +3,7 @@ import styles from "./styles/list.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { WorkerCard } from "../../workerCard/workerCard";
 import { fetchWorkers } from "../../slices/workersSlice";
+import { Button } from "../buttons/button";
 
 export function WorkersList({}) {
   const dispatch = useDispatch();
@@ -20,11 +21,10 @@ export function WorkersList({}) {
       {selectedUsers.map((user, idx) => {
         return <WorkerCard key={idx} data={user} />;
       })}
-      {/*<WorkerCard />*/}
-      {/*<WorkerCard />*/}
-      {/*<WorkerCard />*/}
-      {/*<WorkerCard />*/}
-      {/*<WorkerCard />*/}
+
+      <div className={styles.loadButtonContainer}>
+        <Button text="Load more" callback={() => dispatch(fetchWorkers())} />
+      </div>
     </div>
   );
 }

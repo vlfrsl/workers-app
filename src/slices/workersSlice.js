@@ -29,7 +29,7 @@ export const workersSlice = createSlice({
       .addCase(fetchWorkers.fulfilled, (state, action) => {
         console.log("Loaded");
 
-        state.workers = action.payload.users;
+        state.workers = [...state.workers, ...action.payload.users];
         state.next = action.payload.links.next_url ? true : false;
 
         console.log(action.payload);
