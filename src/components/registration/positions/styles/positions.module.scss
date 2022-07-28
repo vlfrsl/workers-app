@@ -1,8 +1,5 @@
 
-.positionsWrapper {
-  //background: green;
-  margin-top: 25px;
-
+.container {
 
   font-family: 'Nunito', sans-serif;
   font-style: normal;
@@ -10,17 +7,6 @@
   font-size: 16px;
   line-height: 26px;
 
-  .radioButtonContainer {
-    display: flex;
-    align-items: center;
-
-    input {
-      width: 20px;
-      height: 20px;
-
-      margin: 0 12px 0 0;
-    }
-  }
 
   .title {
     height: 25px;

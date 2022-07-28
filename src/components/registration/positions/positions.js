@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/positions.module.scss";
+import { fetchPositions } from "../../../slices/registrationSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RadioButton } from "./radioButton/radioButton";
 
 export function Positions() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPositions());
+  }, []);
+
+  const status = useSelector((state) => state.registration.status);
+  const selectedPositions = useSelector(
+    (state) => state.registration.positions
+  );
+
   return (
-    <div
-      className={styles.container}
-      onClick={(e) => {
-        if (e.target.tagName === "INPUT") {
-          console.log("yes");
-        }
-      }}
-    >
+    <div className={styles.container}>
       <div className={styles.title}>
         <span>Select your position</span>
       </div>
-      <div className={styles.radioButtonContainer}>
-        <input
-          className={styles.radioBtn}
-          type="radio"
-          id="choice1"
-          value="email"
-        />
-        <label htmlFor="choice1">Email</label>
-      </div>
+
+      {selectedPositions.map((position, idx) => {
+        return <RadioButton key={idx} position={position} />;
+      })}
     </div>
   );
 }
