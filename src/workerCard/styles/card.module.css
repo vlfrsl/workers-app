@@ -13,12 +13,18 @@
   .card {
     width: 282px;
     height: 254px;
+    margin-bottom: 16px;
   }
 }
 @media all and (max-width: 980px) {
   .card {
     height: 254px;
     width: 344px;
+  }
+}
+@media all and (max-width: 480px) {
+  .card {
+    margin-bottom: 20px;
   }
 }
 
