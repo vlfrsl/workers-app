@@ -30,6 +30,7 @@ export const workersSlice = createSlice({
         console.log("Loaded");
 
         state.workers = [...state.workers, ...action.payload.users];
+        console.log("is", action.payload.links.next_url);
         state.next = action.payload.links.next_url ? true : false;
 
         console.log(action.payload);

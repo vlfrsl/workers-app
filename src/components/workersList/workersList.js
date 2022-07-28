@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { WorkerCard } from "../../workerCard/workerCard";
 import { fetchWorkers } from "../../slices/workersSlice";
 import { Button } from "../buttons/button";
+import { Loader } from "../../loader/loader";
 
 export function WorkersList({}) {
   const dispatch = useDispatch();
-  const [fetching, setFetching] = useState(true);
 
   const selectedUsers = useSelector((state) => state.workers.workers);
+  const selectStatus = useSelector((state) => state.workers.status);
+  const selectIsNext = useSelector((state) => state.workers.isNext);
   console.log("USERS", selectedUsers);
 
   useEffect(() => {
-    dispatch(fetchWorkers()).then(() => setFetching(false));
+    dispatch(fetchWorkers());
   }, []);
 
   return (
@@ -23,7 +25,15 @@ export function WorkersList({}) {
       })}
 
       <div className={styles.loadButtonContainer}>
-        <Button text="Load more" callback={() => dispatch(fetchWorkers())} />
+        {selectStatus === "loading" ? (
+          <Loader />
+        ) : (
+          <Button
+            text="Load more"
+            callback={() => dispatch(fetchWorkers())}
+            disabled={!selectIsNext}
+          />
+        )}
       </div>
     </div>
   );
