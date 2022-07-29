@@ -11,8 +11,20 @@ export function Header() {
           <Logo />
         </div>
         <div className={styles.buttonsContainer}>
-          <Button text="Users" callback={() => console.log("USERS")} />
-          <Button text="Sign up" callback={() => console.log("SIGN UP")} />
+          <Button
+            text="Users"
+            callback={() => {
+              const el = document.getElementById("users");
+              el.scrollIntoView();
+            }}
+          />
+          <Button
+            text="Sign up"
+            callback={() => {
+              const el = document.getElementById("registration");
+              el.scrollIntoView();
+            }}
+          />
         </div>
       </div>
     </div>

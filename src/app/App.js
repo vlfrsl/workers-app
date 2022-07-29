@@ -12,7 +12,7 @@ function App() {
       <Header />
       <div className={styles.contentWrapper}>
         <Banner />
-        <div className={styles.usersListWrapper}>
+        <div className={styles.usersListWrapper} id="users">
           <div className={styles.titleWrapper}>
             <ComponentTitle text="Working with GET request" />
           </div>
@@ -23,7 +23,7 @@ function App() {
           <div className={styles.titleWrapper}>
             <ComponentTitle text="Working with POST request " />
           </div>
-          <div className={styles.registrationWrapper}>
+          <div className={styles.registrationWrapper} id="registration">
             <Registration />
           </div>
         </div>

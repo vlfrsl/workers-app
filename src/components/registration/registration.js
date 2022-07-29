@@ -1,22 +1,36 @@
 import React, { useRef, useState } from "react";
 import styles from "./style/registration.module.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../slices/usersSlice";
 import { Input } from "./input/input";
 import { Button } from "../buttons/button";
 import { UploadItem } from "./uploadItem/uploadItem";
 import { Positions } from "./positions/positions";
 
-import { setName, setEmail, setPhone } from "../../actions/actions";
+import {
+  setName,
+  setEmail,
+  setPhone,
+  setUploadPhoto,
+} from "../../actions/actions";
 import {
   nameValidator,
   emailValidator,
   phoneValidator,
+  imageValidator,
 } from "../../validators/validators";
 
 export function Registration() {
   const dispatch = useDispatch();
+  const selectedUserInfo = useSelector(
+    (state) => state.registration.signInForm
+  );
+  let isFullInfo = Object.values(selectedUserInfo).some(
+    (elem) => Boolean(elem) === false
+  );
+  console.log("info", selectedUserInfo);
+  // console.log("is full info", isFullInfo);
 
   return (
     <div className={styles.registrationContainer}>
@@ -25,19 +39,19 @@ export function Registration() {
           initial="Your name"
           inputType="text"
           action={setName}
-          isValid={nameValidator}
+          validator={nameValidator}
         />
         <Input
           initial="Email"
           inputType="email"
           action={setEmail}
-          isValid={emailValidator}
+          validator={emailValidator}
         />
         <Input
           initial="Phone"
           inputType="tel"
           action={setPhone}
-          isValid={phoneValidator}
+          validator={phoneValidator}
         />
       </div>
       <div className={styles.hint}>
@@ -49,12 +63,17 @@ export function Registration() {
       </div>
 
       <div className={styles.uploadWrapper}>
-        <UploadItem />
+        <UploadItem
+          initial="Upload your photo"
+          action={setUploadPhoto}
+          validator={imageValidator}
+        />
       </div>
 
       <div className={styles.buttonWrapper}>
         <Button
           text="Sign up"
+          disabled={isFullInfo}
           callback={() => {
             console.log("SIGN");
           }}
@@ -63,29 +82,3 @@ export function Registration() {
     </div>
   );
 }
-//         <div>
-//             <input type="file" onChange={(e)=> {
-//                 console.log(e.target.value)
-//                 setFile(e.target.files[0])
-//             }}/>
-//         <button
-//                 onClick={()=>{
-//                     console.log("File", file)
-//                     let formData = new FormData();
-//                     formData.append("name", "TEST name");
-//                     formData.append("email", "test@gmail.com");
-//                     formData.append("position_id", "2");
-//                     formData.append("phone", "+380995627833");
-//                     formData.append("photo", file);
-//
-//                     // name: "TEST name",
-//                     //     email: "testemail@gmail.com",
-//                     //     phone: "+380995627833",
-//                     //     position_id: 2,
-//                     //     photo:  data,
-//                     dispatch(registerUser(formData))
-//                 }}
-//             >REGISTER
-//         </button>
-//     </div>)
-// }

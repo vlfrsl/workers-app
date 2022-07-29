@@ -25,3 +25,10 @@ export const setPositionId = (id) => {
     payload: id,
   };
 };
+
+export const setUploadPhoto = (file) => {
+  return {
+    type: "registration/setUploadPhoto",
+    payload: file,
+  };
+};

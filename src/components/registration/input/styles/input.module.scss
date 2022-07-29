@@ -31,9 +31,13 @@
     border: 1px solid red;
   }
   &:after {
-    content: "Invalid data";
-    color: red;
-  }}
+    content: attr(data-error);
+    color: #CB3D40;
+
+    //content: "Invalid data";
+    //color: red;
+  }
+}
 
 .positionsWrapper {
   width: 100%;

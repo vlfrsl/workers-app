@@ -9,7 +9,7 @@ const initialState = {
     name: "",
     email: "",
     phone: "",
-    positionId: -1,
+    positionId: null,
     photo: null,
   },
 };
@@ -37,6 +37,9 @@ export const registrationSlice = createSlice({
     },
     setPositionId(state, action) {
       state.signInForm.positionId = action.payload;
+    },
+    setUploadPhoto(state, action) {
+      state.signInForm.photo = action.payload;
     },
   },
 
