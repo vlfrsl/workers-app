@@ -8,15 +8,37 @@ import { Button } from "../buttons/button";
 import { UploadItem } from "./uploadItem/uploadItem";
 import { Positions } from "./positions/positions";
 
+import { setName, setEmail, setPhone } from "../../actions/actions";
+import {
+  nameValidator,
+  emailValidator,
+  phoneValidator,
+} from "../../validators/validators";
+
 export function Registration() {
   const dispatch = useDispatch();
 
   return (
     <div className={styles.registrationContainer}>
       <div className={styles.inputsWrapper}>
-        <Input />
-        <Input />
-        <Input />
+        <Input
+          initial="Your name"
+          inputType="text"
+          action={setName}
+          isValid={nameValidator}
+        />
+        <Input
+          initial="Email"
+          inputType="email"
+          action={setEmail}
+          isValid={emailValidator}
+        />
+        <Input
+          initial="Phone"
+          inputType="tel"
+          action={setPhone}
+          isValid={phoneValidator}
+        />
       </div>
       <div className={styles.hint}>
         <span>+38 (XXX) XXX - XX - XX</span>

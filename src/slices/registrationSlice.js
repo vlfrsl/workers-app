@@ -26,6 +26,15 @@ export const registrationSlice = createSlice({
   initialState,
 
   reducers: {
+    setName(state, action) {
+      state.signInForm.name = action.payload;
+    },
+    setEmail(state, action) {
+      state.signInForm.email = action.payload;
+    },
+    setPhone(state, action) {
+      state.signInForm.phone = action.payload;
+    },
     setPositionId(state, action) {
       state.signInForm.positionId = action.payload;
     },
