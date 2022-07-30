@@ -6,12 +6,11 @@ export const phoneValidator = (val) => {
     message: "",
   };
 
-  if (!val.match(/\+38\ \(\d{3}\)\ \d{3}-\d{2}-\d{2}/g)) {
+  if (!val.match(/^[\+]{0,1}380([0-9]{9})$/g)) {
     result.isValid = false;
-    result.message = " user phone number, should fit a template below.";
+    result.message = " user phone number invalid, check template below";
   }
   return result;
-  //return !!val.match(/\+38\ \(\d{3}\)\ \d{3}-\d{2}-\d{2}/g); //? true : false;
 };
 
 export const nameValidator = (val) => {
@@ -21,7 +20,6 @@ export const nameValidator = (val) => {
   };
 
   if (!(val.length >= 2 && val.length <= 60)) {
-    console.log("IN valid name err");
     result.isValid = false;
     result.message = "user name, should be 2-60 characters";
   }
@@ -37,16 +35,13 @@ export const emailValidator = (val) => {
 
   if (
     !val.match(
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+      /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/g
     )
   ) {
     result.isValid = false;
     result.message = "user email, must be a valid email according to RFC2822";
   }
   return result;
-
-  // return !!val.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
-  // );
 };
 
 export const imageValidator = (file) => {
@@ -59,13 +54,13 @@ export const imageValidator = (file) => {
 
   if (!allowed.includes(type)) {
     result.isValid = false;
-    result.message = `user photo should be ${allowed.join(" / ")} image`; //.push(`${allowed.join(" / ")} required`);
+    result.message = `user photo should be ${allowed.join(" / ")} image`;
     return result;
   }
 
   if (file.size > 50000) {
     result.isValid = false;
-    result.message = "size must not exceed 5MB"; //.push("too big image size");
+    result.message = "size must not exceed 5MB";
     return result;
   }
 
@@ -74,7 +69,7 @@ export const imageValidator = (file) => {
   img.onload = function () {
     if (img.naturalWidth < 70 || img.naturalHeight < 70) {
       result.isValid = false;
-      result.message = "resolution at least 70x70px"; //.push("resolution at least 70x70");
+      result.message = "resolution at least 70x70px";
     }
   };
 

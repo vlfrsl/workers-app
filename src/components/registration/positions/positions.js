@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/positions.module.scss";
 import { fetchPositions } from "../../../slices/registrationSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,14 +8,15 @@ import { Loader } from "../../../loader/loader";
 export function Positions() {
   const dispatch = useDispatch();
 
+  const selectedPositions = useSelector(
+    (state) => state.registration.positions
+  );
+
   useEffect(() => {
     dispatch(fetchPositions());
   }, []);
 
   const status = useSelector((state) => state.registration.status);
-  const selectedPositions = useSelector(
-    (state) => state.registration.positions
-  );
 
   return (
     <div className={styles.container}>
@@ -24,9 +25,10 @@ export function Positions() {
       </div>
 
       {status === "loading" && <Loader />}
-      {selectedPositions.map((position, idx) => {
-        return <RadioButton key={idx} position={position} />;
-      })}
+      {status === "idle" &&
+        selectedPositions.map((position, idx) => {
+          return <RadioButton key={idx} position={position} />;
+        })}
     </div>
   );
 }

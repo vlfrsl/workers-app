@@ -3,11 +3,14 @@ import styles from "./styles/upload.module.scss";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { imageValidator } from "../../../validators/validators";
 
 export function UploadItem({ initial, validator, action }) {
   const dispatch = useDispatch();
-  const [file, setFile] = useState({});
+
+  const selectedFile = useSelector(
+    (state) => state.registration.signInForm.photo
+  );
+
   const [isCorrect, setCorrect] = useState(true);
   const [errMessage, setErrMessage] = useState("");
 
@@ -28,8 +31,9 @@ export function UploadItem({ initial, validator, action }) {
             Upload
           </button>
         </div>
+
         <div className={styles.fileName}>
-          <span>{file.name || initial}</span>
+          <span>{selectedFile !== null ? selectedFile.name : initial}</span>
         </div>
       </div>
       <input
@@ -39,13 +43,11 @@ export function UploadItem({ initial, validator, action }) {
         onChange={(e) => {
           const { isValid, message } = validator(e.target.files[0]);
           setCorrect(isValid);
-          // setFile(e.target.files[0]);
+
           if (isValid) {
-            setFile(e.target.files[0]);
-            dispatch(action(file));
+            dispatch(action(e.target.files[0]));
           } else {
             setErrMessage(message);
-            setFile({});
             dispatch(action(null));
           }
         }}

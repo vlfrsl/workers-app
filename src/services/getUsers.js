@@ -1,4 +1,5 @@
 export const getUsers = async ({ page, limit }) => {
+  console.log("page", page);
   return await fetch(
     `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=${limit}`
   ).then((response) => {

@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style/registration.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../slices/usersSlice";
+import { registerUser } from "../../slices/registrationSlice";
 import { Input } from "./input/input";
 import { Button } from "../buttons/button";
 import { UploadItem } from "./uploadItem/uploadItem";
@@ -13,7 +13,7 @@ import {
   setEmail,
   setPhone,
   setUploadPhoto,
-} from "../../actions/actions";
+} from "../../actions/registrationActions";
 import {
   nameValidator,
   emailValidator,
@@ -21,45 +21,71 @@ import {
   imageValidator,
 } from "../../validators/validators";
 
+import { fetchUsersReload } from "../../slices/usersSlice";
+
 export function Registration() {
   const dispatch = useDispatch();
-  const selectedUserInfo = useSelector(
-    (state) => state.registration.signInForm
+  const selectedData = useSelector((state) => state.registration.signInForm);
+  console.log("SELECTED DATA", selectedData);
+  const selectIsRegistered = useSelector(
+    (state) => state.registration.isUserRegistered
   );
-  let isFullInfo = Object.values(selectedUserInfo).some(
-    (elem) => Boolean(elem) === false
-  );
-  console.log("info", selectedUserInfo);
-  // console.log("is full info", isFullInfo);
 
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  useEffect(() => {
+    let isFullInfo = Object.values(selectedData).some(
+      (elem) => Boolean(elem) === false
+    );
+    setCanSubmit(isFullInfo);
+  }, [selectedData]);
+
+  if (selectIsRegistered) {
+    console.log(selectIsRegistered);
+    return (
+      <div>
+        <h1>REGISTERED</h1>
+        <button
+          onClick={() => {
+            dispatch({
+              type: "registration/setIsRegistered",
+              payload: false,
+            });
+          }}
+        >
+          REGISTER more
+        </button>
+      </div>
+    );
+  }
   return (
     <div className={styles.registrationContainer}>
-      <div className={styles.inputsWrapper}>
+      <form className={styles.inputsWrapper}>
         <Input
-          initial="Your name"
-          inputType="text"
-          action={setName}
+          placeHolder="Your name"
           validator={nameValidator}
+          value={selectedData.name}
+          action={setName}
         />
         <Input
-          initial="Email"
-          inputType="email"
-          action={setEmail}
+          placeHolder="Email"
           validator={emailValidator}
+          value={selectedData.email}
+          action={setEmail}
         />
         <Input
-          initial="Phone"
-          inputType="tel"
-          action={setPhone}
+          placeHolder="Phone"
           validator={phoneValidator}
+          value={selectedData.phone}
+          action={setPhone}
         />
-      </div>
+      </form>
       <div className={styles.hint}>
         <span>+38 (XXX) XXX - XX - XX</span>
       </div>
 
       <div className={styles.positionsWrapper}>
-        <Positions />
+        <Positions value={selectedData.positionId} />
       </div>
 
       <div className={styles.uploadWrapper}>
@@ -73,9 +99,11 @@ export function Registration() {
       <div className={styles.buttonWrapper}>
         <Button
           text="Sign up"
-          disabled={isFullInfo}
+          disabled={canSubmit}
           callback={() => {
-            console.log("SIGN");
+            dispatch(registerUser(selectedData)).then(() => {
+              dispatch(fetchUsersReload());
+            });
           }}
         />
       </div>

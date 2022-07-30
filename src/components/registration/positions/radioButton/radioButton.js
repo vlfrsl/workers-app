@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles/radioButton.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setPositionId } from "../../../../actions/actions";
+import { setPositionId } from "../../../../actions/registrationActions";
 
 export function RadioButton({ position }) {
   const dispatch = useDispatch();
