@@ -5,8 +5,14 @@ import { Banner } from "../components/banner/banner";
 import { UsersList } from "../components/usersList/usersList";
 import { ComponentTitle } from "../components/componentTitle/title";
 import { Registration } from "../components/registration/registration";
+import { useSelector } from "react-redux";
+import { RegistrationSuccess } from "../components/registration/registrationSuccess/registrationSuccess";
 
 function App() {
+  const selectIsRegistered = useSelector(
+    (state) => state.registration.isUserRegistered
+  );
+
   return (
     <div className={styles.appWrapper}>
       <Header />
@@ -21,10 +27,13 @@ function App() {
 
         <div className={styles.usersListWrapper}>
           <div className={styles.titleWrapper}>
-            <ComponentTitle text="Working with POST request " />
+            {selectIsRegistered && <RegistrationSuccess />}
+            {!selectIsRegistered && (
+              <ComponentTitle text="Working with POST request " />
+            )}
           </div>
           <div className={styles.registrationWrapper} id="registration">
-            <Registration />
+            {!selectIsRegistered && <Registration />}
           </div>
         </div>
       </div>

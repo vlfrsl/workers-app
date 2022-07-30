@@ -22,6 +22,7 @@ import {
 } from "../../validators/validators";
 
 import { fetchUsersReload } from "../../slices/usersSlice";
+import { RegistrationSuccess } from "./registrationSuccess/registrationSuccess";
 
 export function Registration() {
   const dispatch = useDispatch();
@@ -40,24 +41,6 @@ export function Registration() {
     setCanSubmit(isFullInfo);
   }, [selectedData]);
 
-  if (selectIsRegistered) {
-    console.log(selectIsRegistered);
-    return (
-      <div>
-        <h1>REGISTERED</h1>
-        <button
-          onClick={() => {
-            dispatch({
-              type: "registration/setIsRegistered",
-              payload: false,
-            });
-          }}
-        >
-          REGISTER more
-        </button>
-      </div>
-    );
-  }
   return (
     <div className={styles.registrationContainer}>
       <form className={styles.inputsWrapper}>

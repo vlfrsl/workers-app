@@ -6,7 +6,7 @@ import { postUser } from "../services/postUser";
 const initialState = {
   positions: [],
   status: "idle",
-  isUserRegistered: false,
+  isUserRegistered: true,
 
   signInForm: {
     name: null,
