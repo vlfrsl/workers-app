@@ -23,10 +23,15 @@ import {
 
 import { fetchUsersReload } from "../../slices/usersSlice";
 import { RegistrationSuccess } from "./registrationSuccess/registrationSuccess";
+import { Error } from "../errorComponent/error";
 
 export function Registration() {
   const dispatch = useDispatch();
   const selectedData = useSelector((state) => state.registration.signInForm);
+  const status = useSelector((state) => state.registration.status);
+  const fetchFailMessage = useSelector(
+    (state) => state.registration.fetchFailMessage
+  );
   console.log("SELECTED DATA", selectedData);
   const selectIsRegistered = useSelector(
     (state) => state.registration.isUserRegistered
@@ -90,6 +95,11 @@ export function Registration() {
           }}
         />
       </div>
+      {status === "failed" && (
+        <div className={styles.errorWrapper}>
+          <Error message={fetchFailMessage} />
+        </div>
+      )}
     </div>
   );
 }

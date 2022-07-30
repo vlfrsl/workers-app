@@ -6,7 +6,7 @@ import { postUser } from "../services/postUser";
 const initialState = {
   positions: [],
   status: "idle",
-  isUserRegistered: true,
+  isUserRegistered: false,
 
   signInForm: {
     name: null,
@@ -15,9 +15,9 @@ const initialState = {
     positionId: null,
     photo: null,
   },
-};
 
-const defaultState = { ...initialState };
+  fetchFailMessage: null,
+};
 
 export const fetchPositions = createAsyncThunk(
   "registration/fetchPositions",
@@ -28,11 +28,17 @@ export const fetchPositions = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
   "registration/registerUser",
-  async (data) => {
-    return await postUser({
-      ...data,
-      token: await getToken(),
-    });
+  async (data, thunkAPI) => {
+    try {
+      const result = await postUser({ ...data, token: await getToken() });
+      return result;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+    // return await postUser({
+    //   ...data,
+    //   token: await getToken(),
+    // });
   }
 );
 
@@ -73,9 +79,17 @@ export const registrationSlice = createSlice({
 
         state.status = "idle";
       })
+
       .addCase(registerUser.pending, (state) => {
         console.log("REGISTER LOADING");
         state.status = "loading";
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        console.log("REGISTER FAILED");
+        // console.log("ERRR mesage", action.payload);
+        state.fetchFailMessage =
+          action.payload || "Something went wrong.Try again later";
+        state.status = "failed";
       })
       .addCase(registerUser.fulfilled, (state) => {
         console.log("state after registration", state);

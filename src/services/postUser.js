@@ -15,7 +15,7 @@ export const postUser = async ({
   formData.append("photo", photo);
 
   return await fetch(
-    `https://frontend-test-assignment-api.abz.agency/api/v1/users`,
+    `shttps://frontend-test-assignment-api.abz.agency/api/v1/users`,
     {
       method: "POST",
       headers: {
@@ -24,12 +24,14 @@ export const postUser = async ({
 
       body: formData,
     }
-  ).then((response) => {
-    // if (response.status !== 200) {
-    //   throw Error;
-    // }
-    return response.json();
-    // console.log("resp", j);
-    // return j;
-  });
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      if (!json.success) {
+        throw Error(json.message);
+      }
+      return json;
+    });
 };
