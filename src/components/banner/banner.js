@@ -22,7 +22,8 @@ export function Banner() {
             <Button
               text="Sign up"
               callback={() => {
-                console.log("Banner sign up");
+                const el = document.getElementById("registration");
+                el.scrollIntoView();
               }}
             />
           </div>

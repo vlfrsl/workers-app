@@ -1,18 +1,12 @@
 import React from "react";
 import styles from "./styles/upload.module.scss";
 import { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
-export function UploadItem({ initial, validator, action }) {
-  const dispatch = useDispatch();
-
-  const selectedFile = useSelector(
-    (state) => state.registration.signInForm.photo
-  );
-
+export function UploadItem({ initial, validator, handleInput }) {
   const [isCorrect, setCorrect] = useState(true);
   const [errMessage, setErrMessage] = useState("");
+  const [fileName, setFileName] = useState("");
 
   const areaClassNames = classNames(styles.uploadContainer, {
     [styles.error]: !isCorrect,
@@ -33,7 +27,7 @@ export function UploadItem({ initial, validator, action }) {
         </div>
 
         <div className={styles.fileName}>
-          <span>{selectedFile !== null ? selectedFile.name : initial}</span>
+          <span>{fileName ? fileName : initial}</span>
         </div>
       </div>
       <input
@@ -45,10 +39,12 @@ export function UploadItem({ initial, validator, action }) {
           setCorrect(isValid);
 
           if (isValid) {
-            dispatch(action(e.target.files[0]));
+            handleInput(e.target.files[0]);
+            setFileName(e.target.files[0].name);
           } else {
             setErrMessage(message);
-            dispatch(action(null));
+            handleInput(null);
+            setFileName("");
           }
         }}
       />
