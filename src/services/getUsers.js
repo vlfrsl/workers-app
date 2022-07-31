@@ -1,10 +1,16 @@
-export const getUsers = async ({ page, limit }) => {
-  return await fetch(
-    `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=${limit}`
-  ).then((response) => {
-    // if (response.status !== 200) {
-    //   throw Error;
-    // }
-    return response.json();
-  });
+import { GET_USERS_URL } from "../constants/urls";
+
+export const getUsers = async (searchParams) => {
+  console.log("page", searchParams.page);
+  const url = GET_USERS_URL + new URLSearchParams(searchParams);
+  return await fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      if (!json.success) {
+        throw Error(json.message);
+      }
+      return json;
+    });
 };

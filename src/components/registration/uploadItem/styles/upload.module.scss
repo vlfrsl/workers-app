@@ -1,0 +1,60 @@
+
+.uploadContainer {
+  width: 100%;
+  height: 54px;
+
+  margin-top: 50px;
+  input {
+    width: 100%;
+    height: 100%;
+
+  }
+}
+
+.customUploadArea {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid #D0CFCF;
+  border-radius: 4px;
+
+  .uploadBtn {
+    flex: 1;
+    max-width: 83px;
+    //width: 83px;
+    height: 100%;
+
+
+    button {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  .fileName {
+    flex: 1;
+    display: flex;
+
+    padding: 0 16px;
+
+    align-items: center;
+  }
+}
+
+.error {
+  .customUploadArea {
+    border: 3px solid #CB3D40;
+    border-left: none ;
+  }
+  .uploadBtn {
+    border-left: 3px solid #CB3D40;
+    border-right: 3px solid #CB3D40;
+  }
+
+  &:after {
+    content: attr(data-error);
+    color: #CB3D40;
+  }
+}

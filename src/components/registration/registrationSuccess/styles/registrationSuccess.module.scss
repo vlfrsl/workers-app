@@ -1,0 +1,19 @@
+
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageContainer {
+  margin-top: 50px;
+
+  height: 290px;
+  width: 328px;
+}
+
+.buttonWrapper {
+  margin-top: 50px;
+}

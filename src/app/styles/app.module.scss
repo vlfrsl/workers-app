@@ -19,7 +19,8 @@
   align-items: center;
 }
 
-.workersListWrapper {
+.usersListWrapper {
+  //background: red;
   width: 100%;
 
   display: flex;
@@ -36,4 +37,18 @@
     display: flex;
     justify-content: center;
   }
+}
+
+.registrationWrapper {
+  //width: 100%;
+  //height: 100%;
+
+  width: 384px;
+  height: 700px;
+
+  //background: blue;
+
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-a;
 }
