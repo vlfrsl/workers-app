@@ -1,3 +1,5 @@
+import { POST_USER_URL } from "../constants/urls";
+
 export const postUser = async ({
   name,
   email,
@@ -6,7 +8,8 @@ export const postUser = async ({
   photo,
   token,
 }) => {
-  // console.log("DATA to post", name, email, phone, positionId, photo, token);
+  const url = POST_USER_URL;
+
   const formData = new FormData();
   formData.append("name", name);
   formData.append("email", email);
@@ -14,17 +17,14 @@ export const postUser = async ({
   formData.append("position_id", positionId);
   formData.append("photo", photo);
 
-  return await fetch(
-    `shttps://frontend-test-assignment-api.abz.agency/api/v1/users`,
-    {
-      method: "POST",
-      headers: {
-        Token: token,
-      },
+  return await fetch(url, {
+    method: "POST",
+    headers: {
+      Token: token,
+    },
 
-      body: formData,
-    }
-  )
+    body: formData,
+  })
     .then((response) => {
       return response.json();
     })

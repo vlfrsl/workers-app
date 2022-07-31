@@ -32,3 +32,9 @@ export const setUploadPhoto = (file) => {
     payload: file,
   };
 };
+
+export const setDefaultsRegistration = () => {
+  return {
+    type: "registration/setDefaults",
+  };
+};

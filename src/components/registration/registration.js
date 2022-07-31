@@ -13,6 +13,7 @@ import {
   setEmail,
   setPhone,
   setUploadPhoto,
+  setDefaultsRegistration,
 } from "../../actions/registrationActions";
 import {
   nameValidator,
@@ -21,21 +22,23 @@ import {
   imageValidator,
 } from "../../validators/validators";
 
-import { fetchUsersReload } from "../../slices/usersSlice";
+import { fetchUsers, fetchUsersReload } from "../../slices/usersSlice";
 import { RegistrationSuccess } from "./registrationSuccess/registrationSuccess";
 import { Error } from "../errorComponent/error";
+import { Loader } from "../../loader/loader";
+import { setDefaultsUsers } from "../../actions/usersActions";
 
 export function Registration() {
   const dispatch = useDispatch();
   const selectedData = useSelector((state) => state.registration.signInForm);
   const status = useSelector((state) => state.registration.status);
+  const isRegistered = useSelector(
+    (state) => state.registration.isUserRegistered
+  );
   const fetchFailMessage = useSelector(
     (state) => state.registration.fetchFailMessage
   );
   console.log("SELECTED DATA", selectedData);
-  const selectIsRegistered = useSelector(
-    (state) => state.registration.isUserRegistered
-  );
 
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -48,7 +51,7 @@ export function Registration() {
 
   return (
     <div className={styles.registrationContainer}>
-      <form className={styles.inputsWrapper}>
+      <div className={styles.inputsWrapper}>
         <Input
           placeHolder="Your name"
           validator={nameValidator}
@@ -67,7 +70,7 @@ export function Registration() {
           value={selectedData.phone}
           action={setPhone}
         />
-      </form>
+      </div>
       <div className={styles.hint}>
         <span>+38 (XXX) XXX - XX - XX</span>
       </div>
@@ -85,16 +88,19 @@ export function Registration() {
       </div>
 
       <div className={styles.buttonWrapper}>
-        <Button
-          text="Sign up"
-          disabled={canSubmit}
-          callback={() => {
-            dispatch(registerUser(selectedData)).then(() => {
-              dispatch(fetchUsersReload());
-            });
-          }}
-        />
+        {status === "loading" ? (
+          <Loader />
+        ) : (
+          <Button
+            text="Sign up"
+            disabled={canSubmit}
+            callback={() => {
+              dispatch(registerUser(selectedData));
+            }}
+          />
+        )}
       </div>
+
       {status === "failed" && (
         <div className={styles.errorWrapper}>
           <Error message={fetchFailMessage} />

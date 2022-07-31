@@ -12,7 +12,7 @@ export const setLimit = (limit) => {
   };
 };
 
-export const setDefaults = () => {
+export const setDefaultsUsers = () => {
   return {
     type: "users/setDefaults",
   };

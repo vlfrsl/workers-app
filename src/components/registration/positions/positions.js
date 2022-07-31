@@ -13,8 +13,10 @@ export function Positions() {
   );
 
   useEffect(() => {
-    dispatch(fetchPositions());
-  }, []);
+    if (selectedPositions.length === 0) {
+      dispatch(fetchPositions());
+    }
+  }, [selectedPositions]);
 
   const status = useSelector((state) => state.registration.status);
 
@@ -24,11 +26,11 @@ export function Positions() {
         <span>Select your position</span>
       </div>
 
-      {status === "loading" && <Loader />}
-      {status === "idle" &&
-        selectedPositions.map((position, idx) => {
-          return <RadioButton key={idx} position={position} />;
-        })}
+      {status === "loading" && selectedPositions.length === 0 && <Loader />}
+
+      {selectedPositions.map((position, idx) => {
+        return <RadioButton key={idx} position={position} />;
+      })}
     </div>
   );
 }

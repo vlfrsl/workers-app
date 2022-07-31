@@ -35,10 +35,6 @@ export const registerUser = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
-    // return await postUser({
-    //   ...data,
-    //   token: await getToken(),
-    // });
   }
 );
 
@@ -62,9 +58,17 @@ export const registrationSlice = createSlice({
     setUploadPhoto(state, action) {
       state.signInForm.photo = action.payload;
     },
-
     setIsRegistered(state, action) {
       state.isUserRegistered = action.payload;
+    },
+    setDefaults(state) {
+      state.signInForm = {
+        name: null,
+        email: null,
+        phone: null,
+        positionId: null,
+        photo: null,
+      };
     },
   },
 
@@ -92,17 +96,10 @@ export const registrationSlice = createSlice({
         state.status = "failed";
       })
       .addCase(registerUser.fulfilled, (state) => {
-        console.log("state after registration", state);
         state.status = "idle";
-        state.signInForm = {
-          name: null,
-          email: null,
-          phone: null,
-          positionId: null,
-          photo: null,
-        };
         state.isUserRegistered = true;
-        console.log("REGISTER LOADED, STATUS", state.signInForm);
+        console.log("state after registration", state.isUserRegistered);
+        //console.log("REGISTER LOADED, STATUS", state.signInForm);
       });
   },
 });
