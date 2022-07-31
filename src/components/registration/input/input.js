@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import styles from "./styles/input.module.scss";
-import { useDispatch } from "react-redux";
+
 import classNames from "classnames";
 
-export function Input({ placeHolder, validator, initialData, action }) {
-  const dispatch = useDispatch();
+export function Input({
+  placeHolder,
+  validator,
+  initialData,
+
+  handelInput,
+}) {
   const [isCorrect, setCorrect] = useState(true);
   const [errMessage, setErrMessage] = useState("");
 
@@ -23,10 +28,10 @@ export function Input({ placeHolder, validator, initialData, action }) {
           setCorrect(isValid);
 
           if (isValid) {
-            dispatch(action(e.target.value));
+            handelInput(e.target.value);
           } else {
             setErrMessage(message);
-            dispatch(action(null));
+            handelInput(null);
           }
         }}
       />

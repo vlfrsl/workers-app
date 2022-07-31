@@ -9,45 +9,49 @@ import { UploadItem } from "./uploadItem/uploadItem";
 import { Positions } from "./positions/positions";
 
 import {
-  setName,
-  setEmail,
-  setPhone,
-  setUploadPhoto,
-  setDefaultsRegistration,
-} from "../../actions/registrationActions";
-import {
   nameValidator,
   emailValidator,
   phoneValidator,
   imageValidator,
 } from "../../validators/validators";
 
-import { fetchUsers, fetchUsersReload } from "../../slices/usersSlice";
-import { RegistrationSuccess } from "./registrationSuccess/registrationSuccess";
 import { Error } from "../errorComponent/error";
 import { Loader } from "../../loader/loader";
-import { setDefaultsUsers } from "../../actions/usersActions";
+import { REGISTER_REQUIRED_DATA } from "../../constants/registerUserDataRequired";
+
+const isDataFull = (data) => {
+  const requiredKeys = Object.keys(REGISTER_REQUIRED_DATA);
+
+  const result = requiredKeys.every((requiredKey) => {
+    return !!data[requiredKey] && !!data[requiredKey];
+  });
+
+  return result;
+};
 
 export function Registration() {
   const dispatch = useDispatch();
   const selectedData = useSelector((state) => state.registration.signInForm);
   const status = useSelector((state) => state.registration.status);
-  const isRegistered = useSelector(
-    (state) => state.registration.isUserRegistered
-  );
+
   const fetchFailMessage = useSelector(
     (state) => state.registration.fetchFailMessage
   );
-  console.log("SELECTED DATA", selectedData);
 
   const [canSubmit, setCanSubmit] = useState(false);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    let isFullInfo = Object.values(selectedData).some(
-      (elem) => Boolean(elem) === false
-    );
-    setCanSubmit(isFullInfo);
-  }, [selectedData]);
+    setCanSubmit(isDataFull(userData));
+  }, [userData]);
+
+  const inputHandler = (type) => {
+    return (value) => {
+      const data = {};
+      data[type] = value;
+      data.type = setUserData({ ...userData, ...data });
+    };
+  };
 
   return (
     <div className={styles.registrationContainer}>
@@ -55,20 +59,17 @@ export function Registration() {
         <Input
           placeHolder="Your name"
           validator={nameValidator}
-          value={selectedData.name}
-          action={setName}
+          handelInput={inputHandler("name")}
         />
         <Input
           placeHolder="Email"
           validator={emailValidator}
-          value={selectedData.email}
-          action={setEmail}
+          handelInput={inputHandler("email")}
         />
         <Input
           placeHolder="Phone"
           validator={phoneValidator}
-          value={selectedData.phone}
-          action={setPhone}
+          handelInput={inputHandler("phone")}
         />
       </div>
       <div className={styles.hint}>
@@ -76,13 +77,13 @@ export function Registration() {
       </div>
 
       <div className={styles.positionsWrapper}>
-        <Positions value={selectedData.positionId} />
+        <Positions handleInput={inputHandler("positionId")} />
       </div>
 
       <div className={styles.uploadWrapper}>
         <UploadItem
           initial="Upload your photo"
-          action={setUploadPhoto}
+          handleInput={inputHandler("photo")}
           validator={imageValidator}
         />
       </div>
@@ -93,9 +94,9 @@ export function Registration() {
         ) : (
           <Button
             text="Sign up"
-            disabled={canSubmit}
+            disabled={!canSubmit}
             callback={() => {
-              dispatch(registerUser(selectedData));
+              dispatch(registerUser(userData));
             }}
           />
         )}

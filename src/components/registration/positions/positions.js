@@ -1,24 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/positions.module.scss";
 import { fetchPositions } from "../../../slices/registrationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RadioButton } from "./radioButton/radioButton";
 import { Loader } from "../../../loader/loader";
 
-export function Positions() {
+export function Positions({ handleInput }) {
   const dispatch = useDispatch();
 
   const selectedPositions = useSelector(
     (state) => state.registration.positions
   );
 
+  const status = useSelector((state) => state.registration.status);
+
+  const [selectedPosition, setSelectedPosition] = useState(null);
   useEffect(() => {
     if (selectedPositions.length === 0) {
       dispatch(fetchPositions());
     }
   }, [selectedPositions]);
 
-  const status = useSelector((state) => state.registration.status);
+  useEffect(() => {
+    handleInput(selectedPosition);
+  }, [selectedPosition]);
 
   return (
     <div className={styles.container}>
@@ -29,7 +34,14 @@ export function Positions() {
       {status === "loading" && selectedPositions.length === 0 && <Loader />}
 
       {selectedPositions.map((position, idx) => {
-        return <RadioButton key={idx} position={position} />;
+        return (
+          <RadioButton
+            key={idx}
+            position={position}
+            selected={selectedPosition}
+            setSelected={setSelectedPosition}
+          />
+        );
       })}
     </div>
   );

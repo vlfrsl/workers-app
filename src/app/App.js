@@ -8,7 +8,7 @@ import { Registration } from "../components/registration/registration";
 import { useDispatch, useSelector } from "react-redux";
 import { RegistrationSuccess } from "../components/registration/registrationSuccess/registrationSuccess";
 import { useEffect } from "react";
-import { setDefaultsRegistration } from "../actions/registrationActions";
+
 import { setDefaultsUsers, setPage } from "../actions/usersActions";
 import { fetchUsers } from "../slices/usersSlice";
 import { INITIAL_USERS_REQUEST_PARAMS } from "../constants/requestParams";
@@ -18,15 +18,14 @@ function App() {
 
   const requestParams = useSelector((state) => state.users.requestParams);
   const selectIsRegistered = useSelector(
-    (state) => state.registration.isUserRegistered
+    (state) => state.registration.isRegistered
   );
   useEffect(() => {
     if (selectIsRegistered) {
       // if user is registered successfully update list and clean user data
-      dispatch(setDefaultsRegistration());
       dispatch(setDefaultsUsers());
       dispatch(fetchUsers(INITIAL_USERS_REQUEST_PARAMS)).then(() =>
-        dispatch(setPage(requestParams.page + 1))
+        dispatch(setPage(INITIAL_USERS_REQUEST_PARAMS.page + 1))
       );
     }
   }, [selectIsRegistered]);
