@@ -25,10 +25,13 @@
     flex: 1;
     max-width: 83px;
     height: 100%;
+    border: 1px solid black;
 
     button {
       @include stylesConstructions.fillAllSpace;
+      @include stylesConstructions.fontText;
       border: none;
+
 
       &:hover {
         cursor: pointer;
@@ -43,6 +46,7 @@
 
     span {
       width: 100%;
+
       @include stylesConstructions.fontText;
       text-align: justify;
     }
