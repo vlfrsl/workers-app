@@ -1,42 +1,31 @@
 import React, { useEffect, useState } from "react";
-import styles from "./style/registration.module.scss";
-
+import styles from "./styles/registration.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../slices/registrationSlice";
-import { Input } from "./input/input";
-import { Button } from "../buttons/button";
-import { UploadItem } from "./uploadItem/uploadItem";
-import { Positions } from "./positions/positions";
+import Input from "../input";
+import Button from "../../buttons";
+import Positions from "../positions";
+import UploadItem from "../uploadItem";
+import Error from "../../errorComponent";
+import Loader from "../../loader";
+import {
+  registerUser,
+  selectErrMessageRegistration,
+  selectStatusRegistration,
+} from "../../../slices/registrationSlice";
 
 import {
   nameValidator,
   emailValidator,
   phoneValidator,
   imageValidator,
-} from "../../validators/validators";
-
-import { Error } from "../errorComponent/error";
-import { Loader } from "../../loader/loader";
-import { REGISTER_REQUIRED_DATA } from "../../constants/registerUserDataRequired";
-
-const isDataFull = (data) => {
-  const requiredKeys = Object.keys(REGISTER_REQUIRED_DATA);
-
-  const result = requiredKeys.every((requiredKey) => {
-    return !!data[requiredKey] && !!data[requiredKey];
-  });
-
-  return result;
-};
+} from "../../../validators/validators";
+import { isDataFull } from "../../../helpers/isDataFull";
 
 export function Registration() {
   const dispatch = useDispatch();
-  const selectedData = useSelector((state) => state.registration.signInForm);
-  const status = useSelector((state) => state.registration.status);
 
-  const fetchFailMessage = useSelector(
-    (state) => state.registration.fetchFailMessage
-  );
+  const status = useSelector(selectStatusRegistration);
+  const fetchFailMessage = useSelector(selectErrMessageRegistration);
 
   const [canSubmit, setCanSubmit] = useState(false);
   const [userData, setUserData] = useState({});

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles/positions.module.scss";
-import { fetchPositions } from "../../../slices/registrationSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RadioButton } from "./radioButton/radioButton";
-import { Loader } from "../../../loader/loader";
+import RadioButton from "./radioButton";
+import Loader from "../../loader";
+import {
+  fetchPositions,
+  selectPositions,
+  selectStatusRegistration,
+} from "../../../slices/registrationSlice";
 
 export function Positions({ handleInput }) {
   const dispatch = useDispatch();
 
-  const selectedPositions = useSelector(
-    (state) => state.registration.positions
-  );
-
-  const status = useSelector((state) => state.registration.status);
+  const selectedPositions = useSelector(selectPositions);
+  const status = useSelector(selectStatusRegistration);
 
   const [selectedPosition, setSelectedPosition] = useState(null);
+
   useEffect(() => {
     if (selectedPositions.length === 0) {
       dispatch(fetchPositions());

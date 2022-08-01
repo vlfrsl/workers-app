@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles/banner.module.scss";
-import { Button } from "../buttons/button";
+import Button from "../buttons";
 
 export function Banner() {
   return (

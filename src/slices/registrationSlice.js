@@ -10,6 +10,12 @@ const initialState = {
   fetchFailMessage: null,
 };
 
+export const selectStatusRegistration = (state) => state.registration.status;
+export const selectPositions = (state) => state.registration.positions;
+export const selectErrMessageRegistration = (state) =>
+  state.registration.fetchFailMessage;
+export const selectIsRegistered = (state) => state.registration.isRegistered;
+
 export const fetchPositions = createAsyncThunk(
   "registration/fetchPositions",
   async () => {

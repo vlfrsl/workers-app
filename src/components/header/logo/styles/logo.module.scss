@@ -1,0 +1,6 @@
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+
+.logoImage {
+  @include stylesConstructions.fillAllSpace;
+}

@@ -1,4 +1,4 @@
-@use "src/styles-variables/constants" as stylesConstructions;
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
 
 .container {
   width: 100%;
@@ -6,10 +6,6 @@
   @include stylesConstructions.fontText;
   display: flex;
   flex-direction: column;
-  //justify-content: space-around;
-
-
-
 
   .title {
     display: flex;

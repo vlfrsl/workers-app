@@ -1,4 +1,4 @@
-@use "src/styles-variables/constants" as stylesConstructions;
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
 
 .registrationContainer {
   @include stylesConstructions.fillAllSpace;
@@ -6,6 +6,7 @@
   justify-content: space-between;
 
   height: 100%;
+  position: relative;
 }
 .inputsWrapper {
 
@@ -19,14 +20,14 @@
 
 .positionsWrapper {
   width: 100%;
-  //margin-top: 20px;
+  margin-top: -10px;
 }
 
 .uploadWrapper {
   width: 100%;
   @include stylesConstructions.flex-center;
-}
 
+}
 
 .buttonWrapper {
   margin-bottom: 50px;
@@ -36,7 +37,8 @@
   }
 }
 
-
 .errorWrapper {
-  margin-top: 20px;
+  position: absolute;
+  top: 93%
 }
+

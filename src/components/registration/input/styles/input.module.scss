@@ -1,4 +1,4 @@
-@use "src/styles-variables/constants" as stylesConstructions;
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
 
 .inputContainer {
   max-width: 100%;
@@ -7,8 +7,8 @@
     content: attr(data-hint);
     position: absolute;
 
-    top: 57px;
-    left: 18px;
+    top: 55px;
+    left: 15px;
 
     @include stylesConstructions.fontText;
     font-size: 12px;

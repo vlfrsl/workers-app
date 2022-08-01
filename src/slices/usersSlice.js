@@ -11,6 +11,12 @@ const initialState = {
   status: "idle",
 };
 
+export const selectStatusUsers = (state) => state.users.status;
+export const selectUsersList = (state) => state.users.usersList;
+export const selectErrMessageUsers = (state) => state.users.fetchFailMessage;
+export const selectIsNext = (state) => state.users.isNext;
+export const selectRequestParams = (state) => state.users.requestParams;
+
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async (queryParams, thunkAPI) => {
