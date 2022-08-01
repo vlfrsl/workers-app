@@ -1,27 +1,27 @@
+@use "src/styles-variables/constants" as stylesConstructions;
+
 
 .navigationWrapper {
   width: 100%;
   height: 60px;
   background: white;
 
-  display: flex;
-  justify-content: center;
+
+  @include stylesConstructions.flex-center;
 }
 
 .navigationContainer {
   width: 100%;
   max-width: 1170px;
 
-  display: flex;
-  align-items: center;
+  @include stylesConstructions.flex-center;
   justify-content: space-between;
 
   .buttonsContainer {
     width: 210px;
     height: 34px;
 
-    display: flex;
-    align-items: center;
+    @include stylesConstructions.flex-center;
     justify-content: space-between;
   }
 

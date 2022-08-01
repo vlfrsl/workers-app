@@ -43,7 +43,7 @@ export function UsersList() {
           <Loader />
         ) : (
           <Button
-            text="Load more"
+            text="Show more"
             callback={() => setFetching(true)}
             disabled={!selectIsNext}
           />

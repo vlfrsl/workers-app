@@ -1,15 +1,18 @@
+@use "src/styles-variables/constants" as stylesConstructions;
 
 .container {
   width: 100%;
 
-  font-family: 'Nunito', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
+  @include stylesConstructions.fontText;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-around;
+
+
 
 
   .title {
-    height: 25px;
+    display: flex;
+    height: 30px;
   }
 }
