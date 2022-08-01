@@ -51,7 +51,7 @@ export function UsersList() {
           <Button
             text="Show more"
             callback={() => setFetching(true)}
-            disabled={!selectedIsNext}
+            hidden={!selectedIsNext}
           />
         )}
       </div>
