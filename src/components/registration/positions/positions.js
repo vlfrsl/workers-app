@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles/positions.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import RadioButton from "./radioButton";
+import RadioButton from "../radioButton";
 import Loader from "../../loader";
 import {
   fetchPositions,
