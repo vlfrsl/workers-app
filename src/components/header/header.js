@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles/header.module.scss";
-import { Button } from "../buttons/button";
-import { Logo } from "../logo/logo";
+import Button from "../buttons";
+import Logo from "./logo";
 
 export function Header() {
   return (

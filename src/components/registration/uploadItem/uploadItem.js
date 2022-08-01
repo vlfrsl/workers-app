@@ -13,6 +13,7 @@ export function UploadItem({ initial, validator, handleInput }) {
   });
 
   const fileInput = useRef(null);
+
   return (
     <div className={areaClassNames} data-error={errMessage}>
       <div className={styles.customUploadArea}>

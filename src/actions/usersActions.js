@@ -5,10 +5,10 @@ export const setPage = (page) => {
   };
 };
 
-export const setLimit = (limit) => {
+export const setCount = (count) => {
   return {
-    type: "users/setPage",
-    payload: limit,
+    type: "users/setCount",
+    payload: count,
   };
 };
 

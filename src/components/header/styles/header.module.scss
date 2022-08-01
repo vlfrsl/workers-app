@@ -1,4 +1,4 @@
-@use "src/styles-variables/constants" as stylesConstructions;
+@use "../../../constants/styles-constatnts/constants" as stylesConstructions;
 
 
 .navigationWrapper {
@@ -31,6 +31,17 @@
   }
 
   @media all and (max-width: 1024px){
-    padding: 0 4.2%;
+    //padding: 0 5.6%;
+    padding: 13px 60px;
+  }
+
+  @media all and (max-width: 768px){
+    padding: 13px 32px;
+    //padding: 0 4.9%;
+  }
+
+  @media all and (max-width: 480px){
+    padding: 13px 16px;
+    //padding: 0 4.9%;
   }
 }

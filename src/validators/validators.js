@@ -8,7 +8,8 @@ export const phoneValidator = (val) => {
 
   if (!val.match(/^[\+]{0,1}380([0-9]{9})$/g)) {
     result.isValid = false;
-    result.message = " user phone number invalid, check template below";
+    result.message =
+      "enter phone number in international format, should start with code of Ukraine +380 ";
   }
   return result;
 };

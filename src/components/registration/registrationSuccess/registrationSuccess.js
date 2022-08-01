@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./styles/registrationSuccess.module.scss";
-import { ComponentTitle } from "../../componentTitle/title";
-import { Button } from "../../buttons/button";
 import { useDispatch } from "react-redux";
+import styles from "./styles/registrationSuccess.module.scss";
+import ComponentTitle from "../../componentTitle";
+import Button from "../../buttons";
 import { setIsRegistered } from "../../../actions/registrationActions";
 
 export function RegistrationSuccess() {
   const dispatch = useDispatch();
+
   return (
     <div className={styles.container}>
       <ComponentTitle text="User successfully registered" />

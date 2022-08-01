@@ -1,34 +1,33 @@
 import React from "react";
 import styles from "./styles/app.module.scss";
-import { Header } from "../components/header/header";
-import { Banner } from "../components/banner/banner";
-import { UsersList } from "../components/usersList/usersList";
-import { ComponentTitle } from "../components/componentTitle/title";
-import { Registration } from "../components/registration/registration";
 import { useDispatch, useSelector } from "react-redux";
-import { RegistrationSuccess } from "../components/registration/registrationSuccess/registrationSuccess";
 import { useEffect } from "react";
+import Header from "../components/header";
+import Banner from "../components/banner";
+import UsersList from "../components/usersList";
+import ComponentTitle from "../components/componentTitle";
+import Registration from "../components/registration";
+import RegistrationSuccess from "../components/registration/registrationSuccess";
 
 import { setDefaultsUsers, setPage } from "../actions/usersActions";
 import { fetchUsers } from "../slices/usersSlice";
 import { INITIAL_USERS_REQUEST_PARAMS } from "../constants/requestParams";
+import { selectIsRegistered } from "../slices/registrationSlice";
 
 function App() {
   const dispatch = useDispatch();
 
-  const requestParams = useSelector((state) => state.users.requestParams);
-  const selectIsRegistered = useSelector(
-    (state) => state.registration.isRegistered
-  );
+  const selectedIsRegistered = useSelector(selectIsRegistered);
+
   useEffect(() => {
-    if (selectIsRegistered) {
+    if (selectedIsRegistered) {
       // if user is registered successfully update list and clean user data
       dispatch(setDefaultsUsers());
       dispatch(fetchUsers(INITIAL_USERS_REQUEST_PARAMS)).then(() =>
         dispatch(setPage(INITIAL_USERS_REQUEST_PARAMS.page + 1))
       );
     }
-  }, [selectIsRegistered]);
+  }, [selectedIsRegistered]);
 
   return (
     <div className={styles.appWrapper}>
@@ -44,12 +43,12 @@ function App() {
 
         <div className={styles.usersListWrapper}>
           <div className={styles.titleWrapper}>
-            {selectIsRegistered && <RegistrationSuccess />}
-            {!selectIsRegistered && (
+            {selectedIsRegistered && <RegistrationSuccess />}
+            {!selectedIsRegistered && (
               <ComponentTitle text="Working with POST request " />
             )}
           </div>
-          {!selectIsRegistered && (
+          {!selectedIsRegistered && (
             <div className={styles.registrationWrapper} id="registration">
               <Registration />
             </div>
