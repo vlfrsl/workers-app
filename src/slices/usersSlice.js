@@ -13,7 +13,6 @@ const initialState = {
 
 export const selectStatusUsers = (state) => state.users.status;
 export const selectUsersList = (state) => state.users.usersList;
-export const selectErrMessageUsers = (state) => state.users.fetchFailMessage;
 export const selectIsNext = (state) => state.users.isNext;
 export const selectRequestParams = (state) => state.users.requestParams;
 
@@ -59,7 +58,6 @@ export const usersSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchUsers.rejected, (state, action) => {
-        console.log("fail");
         state.status = "failed";
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
