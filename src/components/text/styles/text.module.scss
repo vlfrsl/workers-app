@@ -1,0 +1,5 @@
+@use "../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+.textContainer {
+  @include stylesConstructions.fontText;
+}

@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./styles/banner.module.scss";
 import Button from "../buttons";
+import Title from "../title";
+import Text from "../text";
+import { TEXT_BANNER } from "../../constants/text/textContent";
+import { TITLE_BANNER } from "../../constants/text/textContent";
 
 export function Banner() {
   return (
@@ -8,15 +12,11 @@ export function Banner() {
       <img src="./assets/banner.png" alt="" />
       <div className={styles.bannerContentWrapper}>
         <div className={styles.bannerContentContainer}>
-          <span className={styles.title}>
-            Test assignment for front-end developer
-          </span>
-          <span className={styles.text}>
-            What defines a good front-end developer is one that has skilled
-            knowledge of HTML, CSS, JS with a vast understanding of User design
-            thinking as they'll be building web interfaces with accessibility in
-            mind. They should also be excited to learn, as the world of
-            Front-End Development keeps evolving.
+          <div className={styles.titleWrapper}>
+            <Title text={TITLE_BANNER} />
+          </div>
+          <span className={styles.textWrapper}>
+            <Text text={TEXT_BANNER} />
           </span>
           <div className={styles.buttonContainer}>
             <Button

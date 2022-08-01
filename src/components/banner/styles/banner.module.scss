@@ -32,16 +32,19 @@
   justify-content: space-between;
   align-self: center;
 
-  .title {
+  .titleWrapper {
     height: 70px;
 
-    @include stylesConstructions.fontTitle;
-    color: white;
+    span {
+      color: white;
+    }
+
   }
 
-  .text {
-    @include stylesConstructions.fontText;
-    color: white;
+  .textWrapper {
+    span {
+      color: white;
+    }
 
     @media all and (max-width: 360px){
       height: 182px;

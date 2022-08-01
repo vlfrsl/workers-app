@@ -10,17 +10,17 @@ export function UserCard({ data }) {
       <div className={styles.avatarContainer}>
         <img src={photo || "./assets/icons/defaultAvatar.svg"} alt="photo" />
       </div>
-      <div className={styles.nameContainer}>
+      <div data-tip={name} className={styles.nameContainer}>
         <span>{name}</span>
       </div>
       <div className={styles.info}>
-        <div className={styles.position}>
+        <div data-tip={position} className={styles.position}>
           <span>{position}</span>
         </div>
-        <div className={styles.email}>
+        <div data-tip={email} className={styles.email}>
           <span>{email}</span>
         </div>
-        <div className={styles.phone}>
+        <div data-tip={phone} className={styles.phone}>
           <span>{formatPhone(phone)}</span>
         </div>
       </div>
