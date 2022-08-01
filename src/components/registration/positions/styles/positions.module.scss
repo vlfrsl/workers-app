@@ -1,0 +1,14 @@
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+.container {
+  width: 100%;
+
+  @include stylesConstructions.fontText;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    display: flex;
+    height: 30px;
+  }
+}

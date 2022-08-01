@@ -1,0 +1,44 @@
+@use "../../constants/styles-constatnts/constants" as stylesConstructions;
+
+
+.appWrapper {
+
+  @include stylesConstructions.fillAllSpace;
+  @include stylesConstructions.flex-column-center;
+
+  min-height: 100vh;
+  background: #F8F8F8;
+}
+.contentWrapper {
+  width: 100%;
+  max-width: 1170px;
+
+  @include stylesConstructions.flex-column-center;
+}
+
+.usersListWrapper {
+  width: 100%;
+
+  @include stylesConstructions.flex-column-center;
+
+  margin-top: 140px;
+
+  .titleWrapper{
+    width: 85%;
+    margin-bottom: 50px;
+
+    @include stylesConstructions.flex-center;
+  }
+}
+
+.registrationWrapper {
+  width: 380px;
+  height: 700px;
+
+  display: flex;
+  flex-direction: column;
+
+  @media all and (max-width: 480px){
+    width: 330px;
+  }
+}

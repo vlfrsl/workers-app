@@ -1,0 +1,44 @@
+@use "../../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+.registrationContainer {
+  @include stylesConstructions.fillAllSpace;
+  @include stylesConstructions.flex-column-center;
+  justify-content: space-between;
+
+  height: 100%;
+  position: relative;
+}
+.inputsWrapper {
+
+  width: 100%;
+  height: 265px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.positionsWrapper {
+  width: 100%;
+  margin-top: -10px;
+}
+
+.uploadWrapper {
+  width: 100%;
+  @include stylesConstructions.flex-center;
+
+}
+
+.buttonWrapper {
+  margin-bottom: 50px;
+
+  button {
+    color: white;
+  }
+}
+
+.errorWrapper {
+  position: absolute;
+  top: 93%
+}
+

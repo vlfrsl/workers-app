@@ -1,0 +1,10 @@
+@use "../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+.titleContainer {
+  @include stylesConstructions.fillAllSpace;
+  @include stylesConstructions.flex-center;
+
+  .title {
+    @include stylesConstructions.fontTitle;
+  }
+}

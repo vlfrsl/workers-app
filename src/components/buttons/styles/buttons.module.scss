@@ -1,0 +1,26 @@
+@use "../../../constants/styles-constatnts/constants" as stylesConstructions;
+
+.btn {
+  width: 100px;
+  Height :34px;
+
+  border: none;
+  background: stylesConstructions.$yellow;
+  border-radius: 80px;
+
+  @include stylesConstructions.fontText;
+
+
+  &:hover {
+    background: stylesConstructions.$yellowActive;
+    cursor: pointer;
+  }
+}
+
+.disabled {
+  background: stylesConstructions.$disabledBgColor;
+  &:hover {
+    background: stylesConstructions.$disabledBgColor;
+    cursor: pointer;
+  }
+}
