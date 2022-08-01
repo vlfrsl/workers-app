@@ -41,7 +41,6 @@ export const registrationSlice = createSlice({
 
   reducers: {
     setIsRegistered: (state, action) => {
-      console.log("REGISTRATION", action.payload);
       state.isRegistered = action.payload;
     },
   },
@@ -66,7 +65,6 @@ export const registrationSlice = createSlice({
       .addCase(registerUser.fulfilled, (state) => {
         state.status = "idle";
         state.isRegistered = true;
-        console.log("state after registration");
       });
   },
 });
