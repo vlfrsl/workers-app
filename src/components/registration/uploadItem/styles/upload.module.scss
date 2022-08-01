@@ -1,20 +1,22 @@
+@use "src/styles-variables/constants" as stylesConstructions;
+
 
 .uploadContainer {
   width: 100%;
   height: 54px;
 
-  margin-top: 50px;
+  margin-bottom: 0;
   input {
-    width: 100%;
-    height: 100%;
-
+    @include stylesConstructions.fillAllSpace;
   }
+
 }
 
 .customUploadArea {
-  display: flex;
-  width: 100%;
-  height: 100%;
+
+  @include stylesConstructions.fillAllSpace;
+  @include stylesConstructions.flex-center;
+
 
   border: 1px solid #D0CFCF;
   border-radius: 4px;
@@ -22,45 +24,45 @@
   .uploadBtn {
     flex: 1;
     max-width: 83px;
-    //width: 83px;
     height: 100%;
 
-
     button {
-      width: 100%;
-      height: 100%;
+      @include stylesConstructions.fillAllSpace;
       border: none;
+
+
 
       &:hover {
         cursor: pointer;
       }
     }
-
-
   }
 
   .fileName {
+    @include stylesConstructions.flex-center;
     flex: 1;
-    display: flex;
-
     padding: 0 16px;
 
-    align-items: center;
+    span {
+      width: 100%;
+      @include stylesConstructions.fontText;
+      text-align: justify;
+    }
   }
 }
 
 .error {
   .customUploadArea {
-    border: 3px solid #CB3D40;
+    border: 3px solid stylesConstructions.$errorRed;
     border-left: none ;
   }
   .uploadBtn {
-    border-left: 3px solid #CB3D40;
-    border-right: 3px solid #CB3D40;
+    border-left: 3px solid stylesConstructions.$errorRed;
+    border-right: 3px solid stylesConstructions.$errorRed;
   }
 
   &:after {
     content: attr(data-error);
-    color: #CB3D40;
+    color: stylesConstructions.$errorRed;
   }
 }

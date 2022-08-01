@@ -70,10 +70,8 @@ export function Registration() {
           placeHolder="Phone"
           validator={phoneValidator}
           handelInput={inputHandler("phone")}
+          hint="+38 (XXX) XXX - XX - XX"
         />
-      </div>
-      <div className={styles.hint}>
-        <span>+38 (XXX) XXX - XX - XX</span>
       </div>
 
       <div className={styles.positionsWrapper}>

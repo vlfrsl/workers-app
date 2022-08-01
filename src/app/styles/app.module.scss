@@ -1,11 +1,10 @@
+@use "src/styles-variables/constants" as stylesConstructions;
+
 
 .appWrapper {
-  width: 100%;
-  height: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include stylesConstructions.fillAllSpace;
+  @include stylesConstructions.flex-column-center;
 
   min-height: 100vh;
   background: #F8F8F8;
@@ -14,41 +13,32 @@
   width: 100%;
   max-width: 1170px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include stylesConstructions.flex-column-center;
 }
 
 .usersListWrapper {
-  //background: red;
   width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include stylesConstructions.flex-column-center;
 
   margin-top: 140px;
 
   .titleWrapper{
     width: 85%;
-    //background: blue;
     margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
+
+    @include stylesConstructions.flex-center;
   }
 }
 
 .registrationWrapper {
-  //width: 100%;
-  //height: 100%;
-
-  width: 384px;
+  width: 380px;
   height: 700px;
-
-  //background: blue;
 
   display: flex;
   flex-direction: column;
-  //justify-content: space-a;
+
+  @media all and (max-width: 480px){
+    width: 330px;
+  }
 }

@@ -1,34 +1,40 @@
+@use "src/styles-variables/constants" as stylesConstructions;
 
 .listContainer {
   width: 100%;
 
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 
-  justify-content: space-between;
-
-
   @media screen and (max-width: 1170px){
-    margin: 0 60px;
+    width: 95%;
   }
 
   @media all and (max-width: 980px){
-    margin: 0 32px;
+    //margin: 0 32px;
     justify-content: space-around;
   }
 
+
   @media all and (max-width: 480px){
-    margin: 0 16px;
-    justify-content: space-around;
+    //margin: 0 16px;
   }
 }
 
 .loadButtonContainer {
+  @include stylesConstructions.flex-center;
+
+  button{
+    width: 120px;
+  }
+
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-
   margin-top: 25px;
+  @media all and (max-width:768px) {
+    margin-top: 35px;
+  }
+  @media all and (max-width:480px) {
+    margin-top: 25px;
+  }
 }

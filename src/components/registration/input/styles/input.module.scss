@@ -1,13 +1,28 @@
-
+@use "src/styles-variables/constants" as stylesConstructions;
 
 .inputContainer {
   max-width: 100%;
+  position: relative;
+  &:after {
+    content: attr(data-hint);
+    position: absolute;
+
+    top: 57px;
+    left: 18px;
+
+    @include stylesConstructions.fontText;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: justify;
+    color: #7E7E7E;
+
+
+  }
 
   .input {
     box-sizing: border-box;
     width: 100%;
     height: 54px;
-
 
     padding: 16px;
     margin: 0;
@@ -15,31 +30,19 @@
     border: 1px solid #D0CFCF;
     border-radius: 4px;
 
-    font-family: 'Nunito', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-
+    @include stylesConstructions.fontText;
+    text-align: justify;
     color: #7E7E7E;
-
   }
 }
 
 .error {
   .input {
-    border: 1px solid red;
+    border: 1px solid #CB3D40;;
   }
   &:after {
     content: attr(data-error);
     color: #CB3D40;
-
-    //content: "Invalid data";
-    //color: red;
   }
-}
-
-.positionsWrapper {
-  width: 100%;
 }
 

@@ -1,0 +1,53 @@
+@mixin fontTitle {
+  font-family: 'Nunito',sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+@mixin fontText {
+  font-family: 'Nunito',sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+@mixin flex($direction : "row", $justify: none, $align: none, $wrap: none ) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@mixin flex-column-center {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+@mixin fillAllSpace {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+$errorRed: #CB3D40;
+$disabledBgColor : #B4B4B4;
+$yellow : #F4E041;
+$yellowActive : #FFE302;
