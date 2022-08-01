@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Header from "../components/header";
 import Banner from "../components/banner";
 import UsersList from "../components/usersList";
-import ComponentTitle from "../components/componentTitle";
+import Title from "../components/title";
 import Registration from "../components/registration";
 import RegistrationSuccess from "../components/registration/registrationSuccess";
 
@@ -13,6 +13,10 @@ import { setDefaultsUsers, setPage } from "../actions/usersActions";
 import { fetchUsers } from "../slices/usersSlice";
 import { INITIAL_USERS_REQUEST_PARAMS } from "../constants/requestParams";
 import { selectIsRegistered } from "../slices/registrationSlice";
+import {
+  TITLE_REGISTRATION,
+  TITLE_USERS_LIST,
+} from "../constants/text/textContent";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +40,7 @@ function App() {
         <Banner />
         <div className={styles.usersListWrapper} id="users">
           <div className={styles.titleWrapper}>
-            <ComponentTitle text="Working with GET request" />
+            <Title text={TITLE_USERS_LIST} />
           </div>
           <UsersList />
         </div>
@@ -44,9 +48,7 @@ function App() {
         <div className={styles.usersListWrapper}>
           <div className={styles.titleWrapper}>
             {selectedIsRegistered && <RegistrationSuccess />}
-            {!selectedIsRegistered && (
-              <ComponentTitle text="Working with POST request " />
-            )}
+            {!selectedIsRegistered && <Title text={TITLE_REGISTRATION} />}
           </div>
           {!selectedIsRegistered && (
             <div className={styles.registrationWrapper} id="registration">

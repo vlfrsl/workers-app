@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styles from "./styles/registrationSuccess.module.scss";
-import ComponentTitle from "../../componentTitle";
+import Title from "../../title";
 import Button from "../../buttons";
 import { setIsRegistered } from "../../../actions/registrationActions";
 
@@ -10,7 +10,7 @@ export function RegistrationSuccess() {
 
   return (
     <div className={styles.container}>
-      <ComponentTitle text="User successfully registered" />
+      <Title text="User successfully registered" />
 
       <div className={styles.imageContainer}>
         <img src="./assets/success-registration.png" alt="" />
